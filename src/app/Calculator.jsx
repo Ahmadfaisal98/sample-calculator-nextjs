@@ -2,7 +2,8 @@ import { useState } from "react";
 import styles from "./calculator.module.css";
 import "./calculator.css";
 
-const Button = ({ value, setDisplay, display }) => {
+const Button = (props) => {
+  const { value, setDisplay, display } = props;
   function onClickHandler(value) {
     if (!["C", "="].includes(value)) {
       // for append to display
@@ -29,8 +30,8 @@ const Button = ({ value, setDisplay, display }) => {
   );
 };
 
-export default function Calculator() {
-  const [display, setDisplay] = useState("");
+export function Calculator() {
+  const [display, setDisplay] = useState(""); // menyimpan dan merender ulang webnya
   const values = [1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "*", 0, "C", "=", "/"];
   return (
     <div className="container">
@@ -39,7 +40,7 @@ export default function Calculator() {
           style={{ height: "30px", width: "100%" }}
           id="display"
           value={display}
-          onChange={(e) => setDisplay(e.target.value)}
+          onChange={(e) => setDisplay(e.target.value)} // data callback data sebelum diclick -> data sesudah
         />
         <br />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
